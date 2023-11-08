@@ -1,0 +1,2285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="bootstrapmin_3.4.1.css">
+  <script src="jquery_3.6.4.js"></script>
+  <script src="bootstrap_3.4.1.js"></script>
+  <!-- <link rel="stylesheet" href="mdi.css"> -->
+  <title>Swiper Slide Swiping</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <style>
+    body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    }
+    .center-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+    .container {
+        font-family: Gotham, sans-serif;  
+        font-weight: 600;
+        color: whitesmoke;
+        background: linear-gradient(120deg, #2acaa1, #7995d9);
+        background-size: 400% 400%;
+
+        -webkit-animation: AnimationName 35s ease infinite;
+        -moz-animation: AnimationName 35s ease infinite;
+        animation: AnimationName 35s ease infinite;
+
+        width: 750px;
+        width: 100vw;
+        height: 100%;
+        min-height: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        /* overflow-y: hidden; */
+
+        /* width: 100%; */
+    }
+
+    @-webkit-keyframes AnimationName {
+        0%{background-position:86% 0%}
+        50%{background-position:15% 100%}
+        100%{background-position:86% 0%}
+    }
+    @-moz-keyframes AnimationName {
+        0%{background-position:86% 0%}
+        50%{background-position:15% 100%}
+        100%{background-position:86% 0%}
+    }
+    @keyframes AnimationName {
+        0%{background-position:86% 0%}
+        50%{background-position:15% 100%}
+        100%{background-position:86% 0%}
+    }
+
+    .headerContainer {
+        font-family: Gotham, sans-serif;
+        color: whitesmoke;
+        /* background-size: cover; */
+        /* width: 100%; */
+        /* border-radius: 20px; */
+        /* border: thin black; */
+        /* background-image: url(bg1.jpg); */
+        /* box-shadow: 5px 10px 18px #888888; */
+        /* padding: 2rem; */
+        /* height: 100%; */
+        justify-content: center;
+        display: grid;
+
+    }
+    .swiper-container {
+      width: 100%;
+      height: 100vh;
+    }
+
+    .swiper-slide {
+        
+        display: flex;
+        flex-direction: column;
+        border: none;
+        border-radius: 10px;
+        /* padding: 20px; */
+      /* text-align: center;
+      font-size: 30px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center; */
+    }
+
+    .shade {
+    border: 1px solid rgb(204, 204, 204);
+    padding: 24px;
+    border-radius: 17px;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgba(106, 106, 106, 0.28);
+    box-shadow: rgb(136, 136, 136) 5px 10px 18px;
+    margin-bottom: 13px;
+    }
+    .shade input[type="range"] {
+      width: calc(100%); /* Subtract the width of the buttons from the shade div */
+      
+    }
+
+    .shade-position-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: -15px;
+
+    }
+
+    .shade-label-left,
+    .shade-label-right {
+      flex-basis: 50%;
+      text-align: left;
+      margin-top: 5px;
+      
+    }
+
+    .shade-label-right {
+      text-align: right;
+    }    
+    .shade-name {
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 2pX;
+    font-weight: bold;
+    color: whitesmoke;
+    font-size: 20px;
+    margin-bottom: -6px;
+    padding: 0px;
+    margin-left: -11px;
+    margin-top: -14px;
+    margin-bottom: 5px;
+    }
+    .shade-name-left,
+    .shade-delete-right {
+      flex-basis: 70%;
+      text-align: left;
+    }
+
+    .shade-delete-right {
+        text-align: right;
+        color: black;
+        font-weight: normal;
+        font-size: 16px;
+        flex-basis: 5%;
+        background: transparent;
+        border: none;
+        display: flex;
+    }
+    .shade-buttons {
+        justify-content: center;
+        display: flex;
+        flex-wrap: nowrap;
+        align-content: center;
+        align-items: center;
+        /* margin: 10px; */
+        margin-bottom: 40px;
+    }
+
+    .shade-up-button,
+    .shade-stop-button,
+    .shade-down-button {
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: transparent;
+    color: whitesmoke;
+    border-color: white;
+    border: 1px solid;
+    /* padding: 4px; */
+    margin: 2px;
+    /* font-size: 10px; */
+    padding-inline: 25px;
+    /*font-weight: bold;*/
+    font-size: 13px;
+    padding-block: 7px;
+    margin-inline: 10px;
+    }
+    .header {
+        border: 1px solid #000;
+        border-radius: 8px;
+        padding: 0px;
+        margin-bottom: 10px;
+        background-color: #ffffff45;
+        color: black;
+        display: grid;
+        justify-content: center;
+        width: 236px;
+        height: 110px;
+        padding: 10px;
+        box-shadow: 5px 10px 18px #888888;
+        align-content: center;
+        align-items: center;
+        justify-items: center;
+    }
+    .headernew2 {
+        border: 0px solid #000;
+        border-radius: 8px;
+        padding: 0px;
+        margin-bottom: 10px;
+        background-color: #f9f9f900;
+        color: black;
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+    }
+    .headernew {
+        border: 1px solid #000;
+        border-radius: 8px;
+        padding: 0px;
+        margin-bottom: 10px;
+        background-color: #ffffff45;
+        color: black;
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        width: 236px;
+        height: 110px;
+        padding: 10px;
+        box-shadow: 5px 10px 18px #888888;
+
+    }
+    .header h2 {
+      color: black;
+      margin-bottom: 6px;
+    }
+    .ip-container {
+      color: #000;
+    }
+    .device-shades-name {
+        font-size: 30px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        color: whitesmoke;
+    }
+    .device-controller-name {
+      font-size: 30px;
+      margin-bottom: 10px;
+      
+      color: whitesmoke;
+    }
+    button.close {
+      padding: 0;
+      cursor: pointer;
+      background: 0 0;
+      border: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      color: white;
+  }   
+  .delete {
+      border: none;
+      outline: none;
+      background-color: #d9534f;
+      padding: 10px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 16px;
+      transform: .3s ease;
+    }
+  .configure-button {
+      border: none;
+      outline: none;
+      background-color: #FFC107;
+      padding: 10px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 16px;
+      transform: .3s ease;
+  }
+    .pairshade {
+      border: none;
+      outline: none;
+      background-color: royalblue;
+      padding: 10px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 16px;
+      transform: .3s ease;
+    }
+    .pairshade2 {
+        border: none;
+        outline: none;
+        background-color: royalblue;
+        padding: 10px;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 16px;
+        transform: .3s ease;
+        margin-bottom: 10px;
+        justify-content: center;
+        width: 100%;
+    }
+    .grid {
+      display: grid;
+      width: 100%;
+      gap: 6px;
+    }
+  </style>
+  <style>
+    .loader {
+    z-index: 9999;
+    position: relative;
+    width: 2.5em;
+    height: 2.5em;
+    transform: rotate(165deg);
+    }
+
+    .loader:before, .loader:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 0.25em;
+    transform: translate(-50%, -50%);
+    }
+
+    .loader:before {
+    animation: before8 2s infinite;
+    }
+
+    .loader:after {
+    animation: after6 2s infinite;
+    }
+
+    @keyframes before8 {
+    0% {
+        width: 0.5em;
+        box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+    }
+
+    35% {
+        width: 2.5em;
+        box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+    }
+
+    70% {
+        width: 0.5em;
+        box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+    }
+
+    100% {
+        box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+    }
+    }
+
+    @keyframes after6 {
+    0% {
+        height: 0.5em;
+        box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+    }
+
+    35% {
+        height: 2.5em;
+        box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+    }
+
+    70% {
+        height: 0.5em;
+        box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+    }
+
+    100% {
+        box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+    }
+    }
+
+    .loader {
+    position: absolute;
+    top: calc(50% - 1.25em);
+    left: calc(50% - 1.25em);
+    }
+
+  </style>
+  <style>
+
+        /* Add Item Button Styles */
+        .button {
+      position: relative;
+      width: 150px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      border: 1px solid #34974d;
+      background-color: #3aa856;
+      border-radius: 20px;
+    }
+
+    .button, .button__icon, .button__text {
+      transition: all 0.3s;
+    }
+
+    .button .button__text {
+      transform: translateX(30px);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .button .button__icon {
+      position: absolute;
+      transform: translateX(109px);
+      height: 100%;
+      width: 39px;
+      background-color: #34974d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+    }
+
+    .button .svg {
+      width: 30px;
+      stroke: #fff;
+    }
+
+    .button:hover {
+      background: #34974d;
+    }
+
+    .button:hover .button__text {
+      color: transparent;
+    }
+
+    .button:hover .button__icon {
+      width: 148px;
+      transform: translateX(0);
+    }
+
+    .button:active .button__icon {
+      background-color: #2e8644;
+    }
+
+    .button:active {
+      border: 1px solid #2e8644;
+    }  
+    .add-shade-button {
+      margin-top: 10px;
+    }
+    .icon {
+      width: 24px; /* Set the desired width */
+      height: 24px; /* Set the desired height */
+    }
+  </style>
+  <style>
+    /* range Styles */
+
+    input[type="range"] {
+      --thumb-height: 1.125em;
+      --track-height: 0.125em;
+      --track-color: rgba(0, 0, 0, 0.4);
+      --brightness-hover: 180%;
+      --brightness-down: 100%;
+      --clip-edges: 0.125em;
+    }
+
+    /* === range commons === */
+    input[type="range"] {
+      position: relative;
+      
+      background: #fff0;
+      overflow: hidden;
+    }
+
+    input[type="range"]:active {
+      cursor: grabbing;
+    }
+    /* === WebKit specific styles === */
+    input[type="range"],
+    input[type="range"]::-webkit-slider-runnable-track,
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      transition: all ease 300ms;
+      height: var(--thumb-height);
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track,
+    input[type="range"]::-webkit-slider-thumb {
+      position: relative;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      --thumb-radius: calc((var(--thumb-height) * 0.5) - 1px);
+      --clip-top: calc((var(--thumb-height) - var(--track-height)) * 0.5 - 0.5px);
+      --clip-bottom: calc(var(--thumb-height) - var(--clip-top));
+      --clip-further: calc(100% + 1px);
+      --box-fill: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0
+        100vmax currentColor;
+
+      width: var(--thumb-width, var(--thumb-height));
+      background: linear-gradient(currentColor 0 0) scroll no-repeat left center /
+        50% calc(var(--track-height) + 1px);
+      background-color: currentColor;
+      box-shadow: var(--box-fill);
+      border-radius: var(--thumb-width, var(--thumb-height));
+
+      filter: brightness(100%);
+      clip-path: polygon(
+        100% -1px,
+        var(--clip-edges) -1px,
+        0 var(--clip-top),
+        -100vmax var(--clip-top),
+        -100vmax var(--clip-bottom),
+        0 var(--clip-bottom),
+        var(--clip-edges) 100%,
+        var(--clip-further) var(--clip-further)
+      );
+    }
+
+    input[type="range"]:hover::-webkit-slider-thumb {
+      filter: brightness(var(--brightness-hover));
+      cursor: grab;
+    }
+
+    input[type="range"]:active::-webkit-slider-thumb {
+      filter: brightness(var(--brightness-down));
+      cursor: grabbing;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+      background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center /
+        100% calc(var(--track-height) + 1px);
+    }
+
+    input[type="range"]:disabled::-webkit-slider-thumb {
+      cursor: not-allowed;
+    }
+
+  </style>
+  <style>
+        .radio-input input {
+        display: none;
+    }
+
+    .radio-input {
+        --container_width: 300px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        background-color: #ffffff85;
+        color: #000000;
+        width: var(--container_width);
+        overflow: hidden;
+        border: 1px solid rgba(53, 52, 52, 0.226);
+    }
+
+    .radio-input label {
+        width: 100%;
+        padding: 10px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        font-weight: 600;
+        letter-spacing: -1px;
+        font-size: 14px;
+    }
+
+    .selection {
+        display: none;
+        position: absolute;
+        height: 100%;
+        width: calc(var(--container_width) / 3);
+        z-index: 0;
+        left: 0;
+        top: 0;
+        transition: .15s ease;
+    }
+
+    .radio-input label:has(input:checked) {
+        color: #fff;
+    }
+
+    .radio-input label:has(input:checked) ~ .selection {
+        background-color: rgb(89 133 188);
+        display: inline-block;
+    }
+
+    .radio-input label:nth-child(1):has(input:checked) ~ .selection {
+        transform: translateX(calc(var(--container_width) * 0/3));
+    }
+
+    .radio-input label:nth-child(2):has(input:checked) ~ .selection {
+        transform: translateX(calc(var(--container_width) * 1/3));
+    }
+
+    .radio-input label:nth-child(3):has(input:checked) ~ .selection {
+        transform: translateX(calc(var(--container_width) * 2/3));
+    }
+  </style>
+  <style>
+        /* Form Styles */
+        .form3,
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: inherit;
+      background-color: #ffffff00;
+      padding: 20px;
+      border-radius: 20px;
+      position: relative;
+    }
+
+    .title {
+        font-size: 28px;
+        color: whitesmoke;
+        font-weight: 600;
+        letter-spacing: -1px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-left: 30px;
+        /* box-shadow: 5px 10px 18px #888888; */
+        border-radius: 20px;
+        /* width: fit-content; */
+        padding-right: 20px;
+    }
+    .title2::before,.title2::after,
+    .title::before,.title::after {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      left: 0px;
+      background-color: white;
+    }
+    .title2::before,
+    .title::before {
+      width: 18px;
+      height: 18px;
+      background-color: white;
+    }
+    .title2::after,
+    .title::after {
+      width: 18px;
+      height: 18px;
+      animation: pulse 1s linear infinite;
+    }
+
+    .message, .signin {
+      color: rgba(88, 87, 87, 0.822);
+      font-size: 14px;
+    }
+
+    .signin {
+      text-align: center;
+    }
+
+    .signin a {
+      color: royalblue;
+    }
+
+    .signin a:hover {
+      text-decoration: underline royalblue;
+    }
+
+    .flex {
+      display: flex;
+      width: 100%;
+      gap: 6px;
+    }
+    .form3 label,
+    .form label {
+      position: relative;
+    }
+    .form3 label .input,
+    .form label .input {
+        width: 100%;
+        padding: 10px 10px 20px 10px;
+        outline: 0;
+        border: 1px solid rgb(167 161 161 / 80%);
+        border-radius: 10px;
+        color: whitesmoke;
+        background: transparent;
+    }
+
+
+    .form3 label .input:focus,
+    .form label .input:focus {
+        color: whitesmoke;
+        background: rgb(68 69 78);
+    }
+
+    .form3 label .input + span,
+    .form label .input + span {
+      position: absolute;
+      left: 10px;
+      top: 15px;
+      color: grey;
+      font-size: 0.9em;
+      cursor: text;
+      transition: 0.3s ease;
+    }
+    .form3 label .input:placeholder-shown + span,
+    .form label .input:placeholder-shown + span {
+      top: 15px;
+      font-size: 0.9em;
+    }
+    .form3 label .input:focus + span,.form3 label .input:valid + span,
+    .form label .input:focus + span,.form label .input:valid + span {
+      top: 30px;
+      font-size: 0.7em;
+      font-weight: 600;
+    }
+    .form3 label .input:valid + span,
+    .form label .input:valid + span {
+      color: #cfcfcf;
+    }
+
+    .submit {
+      border: none;
+      outline: none;
+      background-color: #34974d;
+      padding: 10px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 16px;
+      transform: .3s ease;
+    }
+
+    .submit:hover {
+      background-color: #3aa856;
+    }
+
+    @keyframes pulse {
+      from {
+        transform: scale(0.9);
+        opacity: 1;
+      }
+
+      to {
+        transform: scale(1.8);
+        opacity: 0;
+      }
+    }
+    .title2 {
+        font-size: 28px;
+        color: whitesmoke;
+        font-weight: 600;
+        letter-spacing: -1px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-left: 30px;
+        /* box-shadow: 5px 10px 18px #888888; */
+        border-radius: 20px;
+        /* width: fit-content; */
+        padding-right: 20px;
+        margin-bottom: -10px;
+    }
+    button[disabled], html input[disabled] {
+      cursor: default;
+      background-color: grey;
+    }
+    button[disabled]:hover, html input[disabled]:hover {
+      /* Your hover styles here */
+      /* Example: */
+      background-color: lightgrey;
+      color: white;
+      cursor: not-allowed;
+    }
+  </style>
+  <style>
+    .modal {
+      backdrop-filter: blur(3px);
+    }
+        /* Modal Styles */
+        .modal-content {
+        background-color: whitesmoke;
+        color: #f5f5f5;
+        border-radius: 35px;
+        /* background-image: url(bg1.jpg); */
+        /* background-size: cover; */
+        background: #343541bf;
+        border: solid 1px;
+    }
+ 
+    .modal-title {
+      color: whitesmoke;
+    }
+    
+    .modal-body {
+      color: whitesmoke;
+      /*background-image: url(bg1.jpg);*/
+      background-size: cover;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+    .modal-open .modal {
+        overflow-x: hidden;
+        overflow-y: auto;
+        /* backdrop-filter: blur(5px); */
+    }
+    /* Add the blur effect to the backdrop */
+    .modal-header {
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        background: #ffffff00;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        /* border: solid 1px; */
+        border-color: black;
+        /* color: whitesmoke; */
+    }
+    .modal-dialog-centered {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      width: 100%;
+    }
+    .close {
+        float: right;
+        font-size: 21px;
+        font-weight: 700;
+        line-height: 1;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
+        filter: alpha(opacity=20);
+        opacity: .5;
+    }  
+    button.close {
+      padding: 0;
+      cursor: pointer;
+      background: 0 0;
+      border: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      color: white;
+  }
+  #confirmationModal2 {
+      z-index: 1050; /* Adjust the value as needed */
+    }
+    #wifisaved {
+      z-index: 1050;
+    }
+
+    #confirmationModal3 {
+      z-index: 1060; /* Adjust the value as needed */
+    }
+  </style>
+  <style>
+    .range-wrap {
+      position: relative;
+      margin: 0 auto 0rem;
+      margin-top: 20px;
+    }
+
+    .range {
+      width: 100%;
+    }
+
+    .bubble {
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 8px 8px;
+      position: absolute;
+      border-radius: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 60px;
+      bottom: -5px;
+      margin-bottom: 0px;
+      inline-size: 20px;
+      display: grid;
+      align-content: space-between;
+      justify-content: center;
+      align-items: center;
+      justify-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .bubble::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgb(105, 105, 105);
+      top: -1px;
+      left: 50%;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="center-container">
+            <div class="radio-input">
+                <label>
+                  <input type="radio" id="value-1" name="value-radio" checked onclick="navigateToSlide(0)">
+                  <span>My Shades</span>
+                </label>
+                <label>
+                  <input type="radio" id="value-2" name="value-radio" onclick="navigateToSlide(1)">
+                  <span>Network</span>
+                </label>
+                <label>
+                  <input type="radio" id="value-3" name="value-radio" onclick="navigateToSlide(2)">
+                  <span>Radio</span>
+                </label>       
+                <span class="selection"></span>
+              </div>
+              <div id="loadingSpinner" class="loader"></div>
+        </div>
+        <div class="swiper-container" id="mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div id="headerContainer" class="headerContainer"></div>
+                <div id="controllersContainer" class="controllers"></div>
+              </div>
+              <div class="swiper-slide">
+                <p>Wi-Fi Strength: <span id="wifiStrength"></span></p>
+                <p>Ethernet Status: <span id="ethernetStatus"></span></p>
+              </div>
+              <div class="swiper-slide">
+                <h2>Info</h2>
+                <p>Wi-Fi Strength: <span id="wifiStrength"></span></p>
+                <p>Ethernet Status: <span id="ethernetStatus"></span></p>
+              </div>
+            </div>
+          </div>
+    </div>
+    <!-- configure Modal -->
+    <div id="configure" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close close-modal-button" data-dismiss="modal">&times;</button>
+            <p class="title2">Configure WiFi Credentials</p>
+            </div>
+            <div class="modal-body">
+            <form class="form3">
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+        
+    <!-- form2 Modal -->
+    <div id="confirmationModal3" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close close-modal-button" data-dismiss="modal" id="dismissinner">&times;</button>
+            <p class="title2">Shade Pairing</p>
+
+            <!--<h4 class="modal-title">Somfy Settings</h4> -->
+            </div>
+            <div class="modal-body">
+            <form class="form2">
+                <p>Follow the instructions below to pair this shade with a Somfy motor:</p>
+                <ol>
+                <li>Open the shade memory using an existing remote.</li>
+                <li>Press the prog button on the back of the remote until the shade jogs.</li>
+                <li>After the shade jogs, press the Prog button below.</li>
+                <li>The shade should jog again, indicating that the shade is paired.</li>
+                <li>If the shade jogs, you can press the shade paired button.</li>
+                <li>If the shade does not jog, press the prog button again.</li>
+                </ol>  
+                <button class="pairshade2" id="thisisatest3" type="button">Program</button>             
+                <button class="pairshade2" id="thisisatest4" type="button">Shade Paired</button>
+            </form>
+
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal2" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close close-modal-button" data-dismiss="modal">&times;</button>
+            <p class="title2">Settings </p>
+            </div>
+            <div class="modal-body">
+
+                <form class="form">
+                        <div class="flex">
+                        <label>
+                            <select required class="input" id="proto">
+                            
+                            <option value="0">RTS</option>
+                            <option value="1">RTW</option>
+                            </select>
+                            <span>Protocol</span>
+                        </label>
+                        <label>
+                            <select required class="input" id="bitLength">
+                            
+                            <option value="56">56</option>
+                            <option value="80">80</option>
+                            <option value="" style="display: none;">--------</option>
+                            </select>
+                            <span>Bit Length:</span>
+                        </label>
+                        <label>
+
+                        </div>  
+                        <div class="flex">
+                        <label>
+                            <select required class="input" id="shadeType">
+                            
+                            <option value="0">Roller Shade</option>
+                            <option value="1">Blind</option>
+                            <option value="2">Drapery</option>
+                            <option value="3">Awning</option>
+                            <option value="" style="display: none;">--------</option>
+                            </select>
+                            <span>Shade Type:</span>
+                        </label>
+                        <label>
+                            <input required class="input" type="number" id="remoteAddress">
+                            </input>
+                            <span>Remote Address:</span>
+                        </label>
+                        </div>  
+                            
+                    <label>
+                        <input required placeholder="" type="text" class="input" id="shadeName">
+                        <span>Name</span>
+                    </label> 
+                        
+                    <div class="flex">
+                    <label>
+                        <input required class="input" type="number" id="upTime" value="10000">
+                        
+                        </input>
+                        <span>Up Time (ms): </span>
+                    </label>
+                    <label>
+                        <input required class="input" type="number" id="downTime" value="10000">
+                        
+                        </input>
+                        <span>Down Time (ms): </span>
+                        
+                    </label>
+
+                    </div> 
+                    <!-- <button class="pairshade" id="thisisatest2" type="button" style="display: none;">Pair Shade</button> -->
+                    <button type="button" class="pairshade" data-toggle="modal" data-target="#confirmationModal3" id="thisisatest2" style="display: none;">Pair Shade</button>
+                    
+                    <label>
+                        <span>Flip Commands: </span>
+                        <input type="checkbox" id="flipCommands">
+                    </label>
+                    <label>
+                    <span>Flip Position: </span>
+                    <input type="checkbox" id="flipPosition">
+                    
+                </label>
+                    <button class="submit" type="submit">Add Shade</button>
+
+                </form>
+
+
+
+
+            </div>
+
+        </div>
+        </div>
+    </div>
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close close-modal-button" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body" id="confirmDeleteButton">
+            <p>Are you sure you want to delete the shade?</p>
+            <div class="form">
+                <button class="delete" id="confirmDeleteButton">Delete</button>
+            </div>
+            </div>       
+        </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="wifisaved" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+            <button type="button" class="close close-modal-button" data-dismiss="modal">&times;</button>
+            <p>WiFi Saved. Rebooting now...</p>
+            </div>       
+        </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  // Initialize Swiper
+  const swiper = new Swiper('.swiper-container', {
+    direction: 'horizontal',
+    slidesPerView: 1,
+    spaceBetween: 20,
+    //allowTouchMove: false,
+    loop: false,
+    //touchEventsTarget: 'container', // Disable touch events
+    on: {
+      slideChange: function () {
+        const radioButtons = document.getElementsByName('value-radio');
+        radioButtons[this.realIndex].checked = true;
+      }
+    }
+  });
+
+  function navigateToSlide(index) {
+    const swiper = document.getElementById('mySwiper').swiper;
+    swiper.slideTo(index);
+  }
+</script>
+
+<script>
+    async function checkIfControllerNeedsConfiguration(ip) {
+      try {
+        const response = await fetch(`http://${ip}/networksettings`);
+        const networkSettings = await response.json();
+        const wifiSsid = networkSettings.wifi.ssid;
+        
+        return wifiSsid === '';
+        
+      } catch (error) {
+        console.error('Error occurred while fetching network settings:', error);
+        return false;
+        
+      }
+    }
+  
+    function showContent(contentId) {
+      // Hide all content divs
+      const contentDivs = document.querySelectorAll('[id$="-content"]');
+      contentDivs.forEach((div) => {
+        div.style.display = 'none';
+      });
+  
+      // Show the selected content div
+      const selectedDiv = document.getElementById(contentId);
+      selectedDiv.style.display = 'block';
+    }  
+    function discoverControllers() {
+      const controllersContainer = document.getElementById('controllersContainer');
+      const loadingSpinner = document.getElementById('loadingSpinner');
+  
+      // Clear the containers
+      controllersContainer.innerHTML = '';
+      loadingSpinner.style.display = 'block';
+  
+      const baseIP = location.hostname.split('.').slice(0, 3).join('.');
+      const ipsToScan = [];
+  
+      for (let i = 1; i <= 255; i++) {
+        ipsToScan.push(`${baseIP}.${i}`);
+      }
+  
+      let controllersFound = 0;
+      let controllersProcessed = 0;
+  
+      // Timeout duration in milliseconds
+      const timeoutDuration = 5000;
+  
+      ipsToScan.forEach(ip => {
+        const controllerAbortController = new AbortController();
+        const controllerSignal = controllerAbortController.signal;
+  
+        const timeoutId = setTimeout(() => {
+          // Abort the fetch request if it takes too long
+          controllerAbortController.abort();
+        }, timeoutDuration);
+  
+        fetch(`http://${ip}:8081/discovery`, { method: 'GET', signal: controllerSignal })
+          .then(response => {
+            clearTimeout(timeoutId); // Clear the timeout if the fetch request succeeds
+  
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          })
+          .then(data => {
+            // Increment the controllers found count
+            controllersFound++;
+  
+            async function createControllerHeader(ip, data) {
+              const newController = await checkIfControllerNeedsConfiguration(ip);
+  
+              if (newController) {
+  
+                console.log('Controller needs configuration');
+                // Retrieve the hostname value from the response
+                const controllerHostname = data.hostname || '';
+
+                // const centerdiv = document.createElement('div');
+                // centerdiv.classList.add('center-container');
+                // Create the controller header
+                const header = document.createElement('div');
+                header.classList.add('headernew');
+
+                // centerdiv.appendChild(header);
+  
+                // Create the IP element
+                const ipElement = document.createElement('strong');
+                ipElement.textContent = 'IP:';
+                const ipValue = document.createTextNode(` ${ip}`);
+                const ipContainer = document.createElement('div');
+                ipContainer.classList.add('ip-container');
+                ipContainer.appendChild(ipElement);
+                ipContainer.appendChild(ipValue);
+  
+                // Create the hostname element
+                const hostnameElement = document.createElement('strong');
+                hostnameElement.textContent = 'Hostname:';
+                const hostnameValue = document.createTextNode(` ${controllerHostname}`);
+                const hostnameContainer = document.createElement('div');
+                hostnameContainer.appendChild(hostnameElement);
+                hostnameContainer.appendChild(hostnameValue);
+  
+                // Create the Configure button
+                const configureButton = document.createElement('button');
+                configureButton.textContent = 'Configure';
+                configureButton.classList.add('configure-button');
+                configureButton.addEventListener('click', () => {
+                  // Handle button click event here
+                  // This is where you can implement the logic for configuring the controller
+                  configure(ip);
+                });
+  
+                // Append the IP, hostname, and Configure button to the header
+                header.appendChild(ipContainer);
+                header.appendChild(hostnameContainer);
+                header.appendChild(configureButton);
+  
+                // Append the header to the desired location in your HTML
+                // For example:
+                const headerContainer = document.getElementById('headerContainer');
+                headerContainer.appendChild(header);
+              }
+              else {
+                
+                console.log('Controller does not need configuration');
+                // Retrieve the hostname value from the response
+                const controllerHostname = data.hostname || '';
+
+                const newheader = document.createElement('div');
+                newheader.classList.add('headernew2')
+                // Create the controller header
+                const header = document.createElement('div');
+                header.classList.add('header');
+
+                newheader.appendChild(header);
+  
+                // Create the IP element
+                const ipElement = document.createElement('strong');
+                ipElement.textContent = 'IP:';
+                const ipValue = document.createTextNode(` ${ip}`);
+                const ipContainer = document.createElement('div');
+                ipContainer.classList.add('ip-container');
+                ipContainer.appendChild(ipElement);
+                ipContainer.appendChild(ipValue);
+
+                // Create the hostname element
+                const hostnameElement = document.createElement('strong');
+                hostnameElement.textContent = 'Hostname:';
+                const hostnameValue = document.createTextNode(` ${controllerHostname}`);
+                const hostnameContainer = document.createElement('div');
+                hostnameContainer.appendChild(hostnameElement);
+                hostnameContainer.appendChild(hostnameValue);
+                //hostnameContainer.appendChild(hostnameInputDiv);
+  
+                // //Create the header content
+                // const headerContent = document.createElement('h2');
+                // headerContent.textContent = `Controller IP: ${ip}`;
+  
+                // //Append the header content to the header
+                header.appendChild(ipContainer);
+                header.appendChild(hostnameContainer);
+  
+                // Create the add shade button
+                const addShadeButtonDiv = document.createElement('div');
+                addShadeButtonDiv.classList.add('add-shade-button');
+  
+                const addShadeButton = document.createElement('button');
+                addShadeButton.type = 'button';
+                addShadeButton.classList.add('button');
+                addShadeButton.addEventListener('click', () => {
+                  sendShadeCommand4(ip);
+                });
+  
+  
+                const addShadeButtonText = document.createElement('span');
+                addShadeButtonText.classList.add('button__text');
+                addShadeButtonText.textContent = 'Add Shade';
+  
+                const addShadeButtonIcon = document.createElement('span');
+                addShadeButtonIcon.classList.add('button__icon');
+                const addShadeButtonSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                addShadeButtonSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+                addShadeButtonSvg.setAttribute('width', '24');
+                addShadeButtonSvg.setAttribute('viewBox', '0 0 24 24');
+                addShadeButtonSvg.setAttribute('stroke-width', '2');
+                addShadeButtonSvg.setAttribute('stroke-linejoin', 'round');
+                addShadeButtonSvg.setAttribute('stroke-linecap', 'round');
+                addShadeButtonSvg.setAttribute('stroke', 'currentColor');
+                addShadeButtonSvg.setAttribute('height', '24');
+                addShadeButtonSvg.setAttribute('fill', 'none');
+                addShadeButtonSvg.setAttribute('color', 'whitesmoke')
+  
+                const addShadeButtonSvgLine1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                addShadeButtonSvgLine1.setAttribute('y2', '19');
+                addShadeButtonSvgLine1.setAttribute('y1', '5');
+                addShadeButtonSvgLine1.setAttribute('x2', '12');
+                addShadeButtonSvgLine1.setAttribute('x1', '12');
+  
+                const addShadeButtonSvgLine2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                addShadeButtonSvgLine2.setAttribute('y2', '12');
+                addShadeButtonSvgLine2.setAttribute('y1', '12');
+                addShadeButtonSvgLine2.setAttribute('x2', '19');
+                addShadeButtonSvgLine2.setAttribute('x1', '5');
+  
+                addShadeButtonSvg.appendChild(addShadeButtonSvgLine1);
+                addShadeButtonSvg.appendChild(addShadeButtonSvgLine2);
+                addShadeButtonIcon.appendChild(addShadeButtonSvg);
+                addShadeButton.appendChild(addShadeButtonText);
+                addShadeButton.appendChild(addShadeButtonIcon);
+                addShadeButtonDiv.appendChild(addShadeButton);
+  
+                header.appendChild(addShadeButtonDiv);
+  
+                // Create the controller div
+                const controllerDiv = document.createElement('div');
+                controllerDiv.classList.add('controller');
+                controllerDiv.setAttribute('data-ip', ip); // Add data attribute for reference
+  
+  
+                // Add the header and controller div to the controllers container
+                controllersContainer.appendChild(newheader);
+                controllersContainer.appendChild(controllerDiv);
+                loadingSpinner.style.display = 'none';
+  
+                // Process the discovered controller data (e.g., shades, hostname, etc.)
+                const shades = data.shades;
+  
+                shades.forEach(shade => {
+                  const shadeDiv = document.createElement('div');
+                  shadeDiv.classList.add('shade');
+                  shadeDiv.id = `shade-${ip}-${shade.shadeId}`;
+  
+  
+                  // Shade name
+                  const shadeName = document.createElement('div');
+                  shadeName.classList.add('shade-name');
+  
+                  // shade-name-left
+                  const shadeNameLeft = document.createElement('span');
+                  shadeNameLeft.classList.add('shade-name-left');
+                  shadeNameLeft.textContent = shade.name;
+                  shadeName.appendChild(shadeNameLeft)
+  
+                  
+                  // Delete shade button
+                  const deleteBtn = document.createElement('button');
+                  deleteBtn.classList.add('shade-delete-right');
+  
+                  // Icon element
+                  const deleteIcon = document.createElement('img');
+                  deleteIcon.setAttribute('src', 'trash-can-outline.svg');
+                  deleteIcon.setAttribute('alt', 'Trash Can Icon');
+                  deleteIcon.classList.add('icon');
+
+  
+                  // Append the icon to the delete button
+                  deleteBtn.appendChild(deleteIcon);
+  
+                  deleteBtn.addEventListener('click', () => {
+                    deleteShade(ip, shade.shadeId);
+                  });
+                  shadeName.appendChild(deleteBtn);
+                  shadeDiv.appendChild(shadeName);
+  
+                  // Shade state div
+                  const shadeStateDiv = document.createElement('div');
+                  shadeStateDiv.classList.add('shade-state');
+  
+                  // Shade state label
+                  const shadeStateLabel = document.createElement('span');
+                  shadeStateLabel.classList.add('shade-state-label');
+                  shadeStateLabel.textContent = getShadeStateLabel(shade.position, shade.flipPosition);
+                  shadeStateLabel.id = `shade-state-label-${shade.remoteAddress}`;
+  
+                  shadeStateDiv.appendChild(shadeStateLabel);
+                  shadeDiv.appendChild(shadeStateDiv);
+                  
+  
+                  // Shade buttons
+                  const shadeButtonsDiv = document.createElement('div');
+                  shadeButtonsDiv.classList.add('shade-buttons');
+  
+                  const closeBtn = document.createElement('button');
+                  closeBtn.textContent = 'CLOSE';
+                  closeBtn.classList.add('shade-down-button');
+                  closeBtn.addEventListener('click', () => {
+                    if ("vibrate" in navigator) {
+                      navigator.vibrate(100); // Vibrates for 200 milliseconds
+                    } else {
+                      console.log("Vibration API is not supported on this device.");
+                    }
+                    sendShadeCommand2(ip, shade.shadeId, 'down');
+                  });
+                  shadeButtonsDiv.appendChild(closeBtn);
+  
+                  const stopBtn = document.createElement('button');
+                  stopBtn.textContent = 'STOP';
+                  stopBtn.classList.add('shade-stop-button');
+                  stopBtn.addEventListener('click', () => {
+                    if ("vibrate" in navigator) {
+                      navigator.vibrate(100); // Vibrates for 200 milliseconds
+                    } else {
+                      console.log("Vibration API is not supported on this device.");
+                    }
+                    sendShadeCommand2(ip, shade.shadeId, 'my');
+                  });
+                  shadeButtonsDiv.appendChild(stopBtn);
+  
+                  const openBtn = document.createElement('button');
+                  openBtn.textContent = 'OPEN';
+                  openBtn.classList.add('shade-up-button');
+                  openBtn.addEventListener('click', () => {
+                    if ("vibrate" in navigator) {
+                      navigator.vibrate(100); // Vibrates for 200 milliseconds
+                    } else {
+                      console.log("Vibration API is not supported on this device.");
+                    }
+                    sendShadeCommand2(ip, shade.shadeId, 'up');
+                  });
+                  shadeButtonsDiv.appendChild(openBtn);
+  
+                  shadeDiv.appendChild(shadeButtonsDiv);
+  
+                  // Append the shade div to the controller div
+                  controllerDiv.appendChild(shadeDiv);
+
+                const wrap = document.createElement('div');
+                wrap.classList.add('range-wrap');
+
+                const bubble = document.createElement('output');
+                bubble.classList.add('bubble');
+
+                // Input range for shade position
+                const shadeRangeInput = document.createElement('input');
+                shadeRangeInput.type = 'range';
+                shadeRangeInput.min = '0';
+                shadeRangeInput.max = '100';
+                shadeRangeInput.value = shade.position;
+                shadeRangeInput.id = `shade-position-${ip}-${shade.shadeId}`;
+                shadeRangeInput.classList.add('swiper-no-swiping');
+                shadeRangeInput.classList.add('range');               
+                
+
+                wrap.appendChild(bubble);
+                wrap.appendChild(shadeRangeInput);
+
+                shadeDiv.appendChild(wrap);
+
+                
+                // Shade Position Labels
+                const shadePositionLabels = document.createElement('div');
+                shadePositionLabels.classList.add('shade-position-labels');
+  
+                // shade-label-left
+                const shadeLabelLeft = document.createElement('span');
+                shadeLabelLeft.classList.add('shade-label-left');
+                shadeLabelLeft.textContent = shade.flipPosition ? 'CLOSED' : 'OPEN';
+  
+                // shade-label-right
+                const shadeLabelRight = document.createElement('span');
+                shadeLabelRight.classList.add('shade-label-right');
+                shadeLabelRight.textContent = shade.flipPosition ? 'OPEN' : 'CLOSED';
+  
+                shadePositionLabels.appendChild(shadeLabelLeft);
+                shadePositionLabels.appendChild(shadeLabelRight);
+                shadeDiv.appendChild(shadePositionLabels);
+  
+                shadeRangeInput.addEventListener("input", function (event) {
+                  setBubble(shadeRangeInput, bubble);
+                  
+                  // Update the shade position after releasing the drag button
+                 
+                });
+  
+                shadeRangeInput.addEventListener("mouseup", function (event) {
+                  bubble.style.opacity = '0';
+                  const position = event.target.value;
+
+                  // Update the shade position after releasing the drag button
+                  
+                  handleInputChange(ip, shade.shadeId, position);
+                });
+
+                shadeRangeInput.addEventListener('mousedown', function() {
+                  bubble.style.opacity = '1';
+                });
+                shadeRangeInput.addEventListener('touchstart', function() {
+                  bubble.style.opacity = '1';
+                });  
+
+                shadeRangeInput.addEventListener("touchend", function (event) {
+                  bubble.style.opacity = '0';
+                  const position = event.target.value;
+
+                  // Update the shade position after releasing the drag button
+                  
+                  handleInputChange(ip, shade.shadeId, position);
+                });
+
+                setBubble(shadeRangeInput, bubble);
+              
+                // Append the shade div to the controller div
+                controllerDiv.appendChild(shadeDiv);
+                
+              });
+              
+  
+                // Establish WebSocket connection to the controller on port 8080
+                const ws = new WebSocket(`ws://${ip}:8080`);
+                // Handle WebSocket events here (onopen, onmessage, etc.)
+                // ...
+                // Event listener for WebSocket messages
+                ws.addEventListener('message', function(event) {
+                  // Handle WebSocket message
+                  handleWebSocketMessage(event, ip);
+                });
+                // Check if all controllers have been processed
+                if (controllersFound === controllersProcessed) {
+                  // Hide the loading spinner
+                  
+                }
+  
+              }
+            }
+  
+            // Usage example:
+            createControllerHeader(ip, data);
+
+            // Check if all controllers have been processed
+            if (controllersFound === controllersProcessed) {
+              // Hide the loading spinner
+              loadingSpinner.style.display = 'none';
+              // Log the number of controllers found
+              
+            }
+          })
+          .catch(error => {
+            clearTimeout(timeoutId); // Clear the timeout if the fetch request fails
+            console.error(`Error discovering controller at ${ip}: ${error}`);
+  
+            // Check if all controllers have been processed
+            if (controllersFound === controllersProcessed) {
+              // Hide the loading spinner
+              loadingSpinner.style.display = 'none';
+              
+              //loadingSpinner.style.display = 'none';
+              // Log the number of controllers found
+              
+            }
+          })
+          .finally(() => {
+            // Increment the controllers processed count
+            controllersProcessed++;
+            
+          });
+      });
+      
+    }
+    function getNextShade(ip) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', `http://${ip}/getNextShade`, false);
+        xhr.send();
+  
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          return response.shadeId;
+        }
+  
+        // Return a default value or handle the error case
+        return null;
+      }
+    function setBubble(range, bubble) {
+      const val = range.value;
+      const min = range.min ? range.min : 0;
+      const max = range.max ? range.max : 100;
+      const newVal = Number(((val - min) * 100) / (max - min));
+      bubble.innerHTML = val;
+      bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
+    }
+  
+    function addShade(event, ip) {
+        event.preventDefault(); // Prevent the default form submission
+        var form = document.querySelector('.form');
+  
+        // Get the form values
+        var shadeId = getNextShade(ip); // Assume you have a function called getNextShade() that returns the shadeId
+        var name = document.getElementById('shadeName').value;
+        var remoteAddress = parseInt(document.getElementById('remoteAddress').value);
+        var upTime = parseInt(document.getElementById('upTime').value);
+        var downTime = parseInt(document.getElementById('downTime').value);
+        var proto = parseInt(document.getElementById('proto').value);
+        var bitLength = parseInt(document.getElementById('bitLength').value);
+        var shadeType = parseInt(document.getElementById('shadeType').value);
+        var flipCommands = document.getElementById('flipCommands').checked;
+        var flipPosition = document.getElementById('flipPosition').checked;
+        form.dataset.id = shadeId; // Set the shadeId as a data attribute
+        
+        // Create the payload object
+        var payload = {
+  
+          name: name,
+          remoteAddress: remoteAddress,
+          upTime: upTime,
+          downTime: downTime,
+          tiltTime: 7000,
+          stepSize: 100,
+          tiltType: 0,
+          shadeType: shadeType,
+          bitLength: bitLength,
+          proto: proto,
+          flipCommands: flipCommands,
+          flipPosition: flipPosition
+        };
+        
+        // Send the PUT request
+        var xhr = new XMLHttpRequest();
+        xhr.open('PUT', `http://${ip}/addShade`, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              // Success
+              console.log('Shade added successfully');
+              // Perform any additional actions or show a success message here
+              // Close the modal
+              //$('#confirmationModal2').modal('hide');
+            } else {
+              // Error
+              console.error('Failed to add shade');
+              // Handle the error or show an error message here
+            }
+          }
+        };
+        xhr.send(JSON.stringify(payload));
+    }
+  function configure(ip) {
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    loadingSpinner.style.display = 'block';
+  
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', `http://${ip}/scanaps`, true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        var accessPoints = response.accessPoints;
+  
+        var form = document.querySelector('.form3');
+        form.dataset.ip = ip;
+        form.innerHTML = ''; // Clear the form contents
+  
+        // Create the div container with the select and label elements
+        var divContainer = document.createElement('div');
+        divContainer.classList.add('grid');
+  
+        var divContainer2 = document.createElement('div');
+        divContainer2.classList.add('grid');
+  
+  
+       
+        var label2 = document.createElement('label');
+        var input = document.createElement('input');
+        
+        input.required = true;
+        input.classList.add('input');
+        input.id = 'password';
+        input.type = "password"
+        var label = document.createElement('label');
+        var select = document.createElement('select');
+        select.required = true;
+        select.classList.add('input')
+        select.id = 'wifiSelect';
+  
+        // Create options for each access point
+        accessPoints.forEach(function(accessPoint) {
+          var option = document.createElement('option');
+          option.value = accessPoint.name;
+          option.textContent = accessPoint.name;
+          
+          select.appendChild(option);
+        });
+  
+        var span = document.createElement('span');
+        span.textContent = 'WiFi';
+  
+        var span2 = document.createElement('span');
+        span2.textContent = 'Password';
+  
+        // Append the select and span elements to the label
+        label.appendChild(select);
+        label.appendChild(span);
+  
+        label2.appendChild(input);
+        label2.appendChild(span2);
+  
+        // Append the label to the div container
+        divContainer.appendChild(label);
+        divContainer2.appendChild(label2);
+  
+        // Append the div container to the form
+        form.appendChild(divContainer);
+        form.appendChild(divContainer2);
+  
+  
+        var connectButton = document.createElement('button');
+        connectButton.classList.add('pairshade2');
+        connectButton.id = 'connect';
+        connectButton.type = 'submit';
+        connectButton.textContent = 'Connect';
+  
+        // Append the remaining form elements to the form
+        form.appendChild(connectButton);
+  
+        loadingSpinner.style.display = 'none';
+        $('#configure').modal('show');
+      }
+    };
+    xhr.send();
+  }
+  
+  
+    function sendShadeCommand4(ip) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', `http://${ip}/getNextShade`, true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          var remoteAddressInput = document.getElementById('remoteAddress');
+  
+          remoteAddressInput.value = response.remoteAddress;
+          var form = document.querySelector('.form');
+          form.dataset.ip = ip;
+          // Show the confirmation modal
+          // Get the pair shade button element
+          const submitButton = form.querySelector('.submit');
+  
+          submitButton.disabled = false;
+          
+          const pairShadeButton = document.getElementById('thisisatest2');
+  
+          pairShadeButton.style.display = 'none';
+          $('#confirmationModal2').modal('show');
+        }
+      };
+      xhr.send();
+    }
+
+    // Register the event listener once when the page is loaded
+    document.getElementById("thisisatest2").addEventListener("click", function() {
+      
+      var form = document.querySelector('.form');
+      var newForm = document.querySelector('.form2');
+      // Get the IP value
+      var ipValue = form.dataset.ip;
+      var shadeIdValue = form.dataset.id;
+  
+      // Generate the new form element
+     
+      // Set the IP value as a data attribute on the new form
+      newForm.dataset.ip = ipValue;
+      // Set the shadeId value as a data attribute on the new form
+      newForm.dataset.id = shadeIdValue
+      
+    });
+    //Register the event listener once when the page is loaded
+    document.getElementById("thisisatest3").addEventListener("click", function() {
+      var form = document.querySelector('.form2');
+      // Get the IP value
+      var ipValue = form.dataset.ip;
+      var shadeIdValue = form.dataset.id
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', `http://${ipValue}/shadeCommand`, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log('Shade command sent successfully');
+        }
+      };
+      const payload = {
+        command: "prog",
+        repeat: 1,
+        shadeId: shadeIdValue
+      };
+      xhr.send(JSON.stringify(payload));
+    });
+    document.getElementById("thisisatest4").addEventListener("click", function() {
+      var form = document.querySelector('.form2');
+      // Get the IP value
+      var ipValue = form.dataset.ip;
+      var shadeIdValue = form.dataset.id
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', `http://${ipValue}/setPaired`, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log('Shade command sent successfully');
+        }
+      };
+      const payload = {
+        paired: true,
+        shadeId: shadeIdValue
+      };
+      xhr.send(JSON.stringify(payload));
+      $('#confirmationModal3').modal('hide');
+    });
+  
+    // Attach the addShade function to the form's submit event
+    var form = document.querySelector('.form');
+    
+  
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const submitButton = form.querySelector('.submit');
+  
+      submitButton.disabled = true;
+      submitButton.classList.add('disabled');
+  
+      var pairShadeButton = document.getElementById("thisisatest2");   
+      var loadingSpinner = document.getElementById('loadingSpinner');
+      loadingSpinner.style.display = 'block';
+      if ("vibrate" in navigator) {
+        navigator.vibrate(200); // Vibrates for 200 milliseconds
+  
+      } else {
+        console.log("Vibration API is not supported on this device.");
+      }
+      var ip = event.target.dataset.ip;
+      addShade(event, ip);
+  
+      pairShadeButton.style.display = "inline-block"; // Show the "Pair Shade" button
+  
+    });
+  
+    // Function to send shade command
+    function sendShadeCommand2(ip, shadeId, command) {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', `http://${ip}/shadeCommand`, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log('Shade command sent successfully');
+        }
+      };
+      const payload = {
+        shadeId: shadeId,
+        command: command
+      };
+      xhr.send(JSON.stringify(payload));
+    }
+    // Function to send shade command to update position
+    function updateShadePosition(ip, shadeId, position) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", `http://${ip}/shadeCommand`, true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log("Shade position updated successfully");
+        }
+      };
+      const payload = {
+        shadeId: shadeId,
+        target: position,
+      };
+      xhr.send(JSON.stringify(payload));
+    }
+    function formatMessage(message) {
+        // Remove "42[" prefix and trailing "]" from the message
+        message = message.replace("42[", "").replace("]", "");
+        return message;
+      }
+    // Function to handle the input range change
+    function handleInputChange(ip, shadeId, position) {
+      // Update the shade position
+      updateShadePosition(ip, shadeId, position);
+    }
+    // Function to send delete command
+    function deleteShade(ip, shadeId) {
+      // Set the IP and shadeId as data attributes in the confirmation modal
+      document.getElementById("confirmationModal").dataset.ip = ip;
+      document.getElementById("confirmationModal").dataset.shadeId = shadeId;
+  
+      // Show the confirmation modal
+      $('#confirmationModal').modal('show');
+    }
+    function getShadeStateLabel(position, flipPosition) {
+          if (flipPosition) {
+              if (position === 0) {
+              return "Closed";
+              } else if (position === 100) {
+              return "Open";
+              } else {
+              return "Partially Open";
+              }
+          } else {
+              if (position === 0) {
+              return "Open";
+              } else if (position === 100) {
+              return "Closed";
+              } else {
+              return "Partially Open";
+              }
+          }
+      }
+  
+    document.querySelector('.form3').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const loadingSpinner = document.getElementById('loadingSpinner');
+      loadingSpinner.style.display = 'block';
+      var selectedAccessPoint = document.getElementById('wifiSelect').value;
+      var password = document.getElementById('password').value;
+      // Handle the form submission, e.g., send the credentials to the server
+      var form = document.querySelector('.form3');
+      
+      // Get the IP value
+      var ipValue = form.dataset.ip;
+          // Send the PUT request
+  
+      const payload = {
+        ethernet: {
+          hardwired: false,
+          boardType: 0,
+          phyType: 0,
+          phyAddress: 0,
+          CLKMode: 0,
+          PWRPin: -1,
+          MDCPin: 23,
+          MDIOPin: 18
+        },
+        wirelessFallback: false,
+        wifi: {
+          ssid: selectedAccessPoint,
+          passphrase: password
+        },
+        connType: 1
+      };
+      
+      var xhr = new XMLHttpRequest();
+      xhr.open('PUT', `http://${ipValue}/setNetwork`, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            console.log('Controller configuration updated successfully.');
+            loadingSpinner.style.display = 'none';
+            // Hide the confirmation modal
+            $('#configure').modal('hide');
+            $('#wifisaved').modal('show');
+            var xhr2 = new XMLHttpRequest();
+            xhr2.open('PUT', `http://${ipValue}/reboot`, true);
+            xhr2.setRequestHeader('Content-Type', 'application/json');
+            xhr2.onreadystatechange = function () {
+              if (xhr2.readyState === 4) {
+                if (xhr2.status === 200) {
+                  console.log('Controller configuration updated successfully.');
+                  loadingSpinner.style.display = 'none';
+                } else {
+                  console.error('Failed to update controller configuration.');
+                }
+              }
+            };
+            const payload2 = {};
+            xhr2.send(JSON.stringify(payload2));
+          } else {
+            console.error('Failed to update controller configuration.');
+          }
+        }
+      };
+      xhr.send(JSON.stringify(payload));
+  
+  
+    });
+  
+    // Register the event listener once when the page is loaded
+    document.getElementById("confirmDeleteButton").addEventListener("click", function() {
+      // Retrieve the IP and shadeId from a data attribute or another source
+      var ip = document.getElementById("confirmationModal").dataset.ip;
+      var shadeId = document.getElementById("confirmationModal").dataset.shadeId;
+      var loadingSpinner = document.getElementById('loadingSpinner');
+      loadingSpinner.style.display = 'block';
+  
+      // Perform the delete shade logic
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", `http://${ip}/deleteShade`, true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log("Shade command sent successfully");
+        }
+      };
+      var payload = {
+        shadeId: shadeId
+      };
+      xhr.send(JSON.stringify(payload));
+  
+      // Hide the confirmation modal
+      $('#confirmationModal').modal('hide');
+    });
+  
+  
+      // Global WebSocket event handler
+    function handleWebSocketMessage(event, ip) {
+      var message = event.data;
+      console.log("Received message:", formatMessage(message));
+  
+      // Remove "42[" prefix and trailing "]" from the message
+      message = message.replace("42[", "").replace("]", "");
+  
+      if (message.startsWith("shadeState")) {
+        // Handle shadeState message
+        var shadeState = JSON.parse(message.substring(message.indexOf("{")));
+        var shadeId = shadeState.shadeId;
+        var shadeRemoteAddress = shadeState.remoteAddress
+        var currentPosition = shadeState.position;
+        var shadeFlipPosition = shadeState.flipPosition
+  
+        // Update the input range position
+        var inputRange = document.getElementById("shade-position-" + ip + "-" + shadeId);
+
+        var Shadestatelabel = document.getElementById("shade-state-label-" + shadeRemoteAddress);
+  
+        
+        inputRange.value = currentPosition;
+        Shadestatelabel.textContent = getShadeStateLabel(currentPosition, shadeFlipPosition);
+  
+      } else if (message.startsWith("shadeAdded")) {
+        // Handle shadeAdded message
+        var loadingSpinner = document.getElementById('loadingSpinner');
+        loadingSpinner.style.display = 'none';    
+        var shadeData = JSON.parse(message.substring(message.indexOf("{")));
+        var shadeId = shadeData.shadeId;
+        var shadePosition = shadeData.position;
+        var shadeName = shadeData.name;
+        var shadeRemoteAddress = shadeData.remoteAddress
+        var shadeFlipPosition = shadeData.flipPosition
+        
+  
+  
+        // Create the shade div
+        var shadeDiv = document.createElement("div");
+        shadeDiv.classList.add("shade");
+        shadeDiv.id = `shade-${ip}-${shadeId}`;
+  
+  
+  
+        // Shade name
+        const shadeNamediv = document.createElement('div');
+        shadeNamediv.classList.add('shade-name');
+  
+        // shade-name-left
+        const shadeNameLeft = document.createElement('span');
+        shadeNameLeft.classList.add('shade-name-left');
+        shadeNameLeft.textContent = shadeName;
+        shadeNamediv.appendChild(shadeNameLeft)
+  
+        
+        // Delete shade button
+        const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('shade-delete-right');
+  
+        // Icon element
+        const deleteIcon = document.createElement('img');
+        deleteIcon.setAttribute('src', 'trash-can-outline.svg');
+        deleteIcon.setAttribute('alt', 'Trash Can Icon');
+        deleteIcon.classList.add('icon');        
+
+        // Append the icon to the delete button
+        deleteBtn.appendChild(deleteIcon);
+  
+        deleteBtn.addEventListener('click', () => {
+          deleteShade(ip, shadeId);
+        });
+        shadeNamediv.appendChild(deleteBtn);
+        shadeDiv.appendChild(shadeNamediv);
+  
+  
+        // Shade state div
+        const shadeStateDiv = document.createElement('div');
+        shadeStateDiv.classList.add('shade-state');
+  
+        // Shade state label
+        const shadeStateLabel = document.createElement('span');
+        shadeStateLabel.classList.add('shade-state-label');
+        shadeStateLabel.textContent = getShadeStateLabel(shadePosition, shadeFlipPosition);
+        shadeStateLabel.id = `shade-state-label-${shadeRemoteAddress}`;
+  
+        shadeStateDiv.appendChild(shadeStateLabel);
+        shadeDiv.appendChild(shadeStateDiv);
+  
+        // Shade buttons
+        var shadeButtonsDiv = document.createElement("div");
+        shadeButtonsDiv.classList.add("shade-buttons");
+  
+        var closeBtn = document.createElement("button");
+        closeBtn.textContent = "CLOSE";
+        closeBtn.classList.add("shade-down-button");
+        closeBtn.addEventListener("click", () => {
+          if ("vibrate" in navigator) {
+            navigator.vibrate(100); // Vibrates for 200 milliseconds
+          } else {
+            console.log("Vibration API is not supported on this device.");
+          }
+          sendShadeCommand2(ip, shadeId, "down");
+        });
+        shadeButtonsDiv.appendChild(closeBtn);
+  
+        var stopBtn = document.createElement("button");
+        stopBtn.textContent = "STOP";
+        stopBtn.classList.add("shade-stop-button");
+        stopBtn.addEventListener("click", () => {
+          if ("vibrate" in navigator) {
+            navigator.vibrate(100); // Vibrates for 200 milliseconds
+          } else {
+            console.log("Vibration API is not supported on this device.");
+          }
+          sendShadeCommand2(ip, shadeId, "my");
+        });
+        shadeButtonsDiv.appendChild(stopBtn);
+  
+        var openBtn = document.createElement("button");
+        openBtn.textContent = "OPEN";
+        openBtn.classList.add("shade-up-button");
+        openBtn.addEventListener("click", () => {
+          if ("vibrate" in navigator) {
+            navigator.vibrate(100); // Vibrates for 200 milliseconds
+          } else {
+            console.log("Vibration API is not supported on this device.");
+          }
+          sendShadeCommand2(ip, shadeId, "up");
+        });
+        shadeButtonsDiv.appendChild(openBtn);
+  
+        shadeDiv.appendChild(shadeButtonsDiv);
+
+
+        const wrap = document.createElement('div');
+        wrap.classList.add('range-wrap');
+
+        const bubble = document.createElement('output');
+        bubble.classList.add('bubble');
+  
+        // Input range for shade position
+        var shadeRangeInput = document.createElement("input");
+        shadeRangeInput.type = "range";
+        shadeRangeInput.min = "0";
+        shadeRangeInput.max = "100";
+        shadeRangeInput.value = shadePosition;
+        shadeRangeInput.id = `shade-position-${ip}-${shadeId}`;
+        shadeRangeInput.classList.add('swiper-no-swiping');
+
+        wrap.appendChild(bubble);
+        wrap.appendChild(shadeRangeInput);
+
+        shadeDiv.appendChild(wrap);     
+  
+        // Shade Position Labels
+        const shadePositionLabels = document.createElement('div');
+        shadePositionLabels.classList.add('shade-position-labels');
+  
+        // shade-label-left
+        const shadeLabelLeft = document.createElement('span');
+        shadeLabelLeft.classList.add('shade-label-left');
+        shadeLabelLeft.textContent = shadeFlipPosition ? 'CLOSED' : 'OPEN';
+  
+        // shade-label-right
+        const shadeLabelRight = document.createElement('span');
+        shadeLabelRight.classList.add('shade-label-right');
+        shadeLabelRight.textContent = shadeFlipPosition ? 'OPEN' : 'CLOSED';
+  
+        shadePositionLabels.appendChild(shadeLabelLeft);
+        shadePositionLabels.appendChild(shadeLabelRight);
+        shadeDiv.appendChild(shadePositionLabels);
+        
+
+        shadeRangeInput.addEventListener("input", function (event) {
+          setBubble(shadeRangeInput, bubble);
+          
+          // Update the shade position after releasing the drag button
+          
+        });
+
+        shadeRangeInput.addEventListener("mouseup", function (event) {
+          bubble.style.opacity = '0';
+          const position = event.target.value;
+
+          // Update the shade position after releasing the drag button
+          
+          handleInputChange(ip, shadeId, position);
+        });
+
+        shadeRangeInput.addEventListener('mousedown', function() {
+          bubble.style.opacity = '1';
+        });
+        shadeRangeInput.addEventListener('touchstart', function() {
+          bubble.style.opacity = '1';
+        });  
+
+        shadeRangeInput.addEventListener("touchend", function (event) {
+          bubble.style.opacity = '0';
+          const position = event.target.value;
+
+          // Update the shade position after releasing the drag button
+          
+          handleInputChange(ip, shadeId, position);
+        });
+
+        setBubble(shadeRangeInput, bubble);
+  
+        // Append the shade div to the corresponding controller div
+        var controllerDiv = document.querySelector(`div[data-ip="${ip}"]`);
+        if (controllerDiv) {
+          controllerDiv.appendChild(shadeDiv);
+        }
+  
+      } else if (message.startsWith("shadeRemoved")) {
+     
+  
+          // Handle shadeRemoved message
+          var shadeData = JSON.parse(message.substring(message.indexOf("{")));
+          var shadeId = shadeData.shadeId;
+          var loadingSpinner = document.getElementById('loadingSpinner');
+          loadingSpinner.style.display = 'none'; 
+  
+  
+          // Remove the shade div from the UI
+          var shadeDiv = document.getElementById(`shade-${ip}-${shadeId}`);
+          if (shadeDiv) {
+            shadeDiv.parentNode.removeChild(shadeDiv);
+          }
+      }
+    }
+  
+  
+    // Call the discoverControllers function when the page is loaded
+    window.onload = discoverControllers;
+</script>
+</html>
